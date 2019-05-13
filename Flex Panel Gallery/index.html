@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex; /* positioning the panels horizontally instead of vertically */
+    }
+
+    .panel {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1; /* spreading the panels evenly in the free space */
+      justify-content: center;
+      align-items: center;
+      display: flex; /* nested flex */
+      flex-direction: column; /* positioning the text vertically instead of horizontally, which is the defalut for flex */
+    }
+
+    .panel1 { background-image:url('Images/Ned Stark.jpg'); }
+    .panel2 { background-image:url('Images/Tyrion.jpg'); }
+    .panel3 { background-image:url('Images/Ramsay.jpg'); }
+    .panel4 { background-image:url('Images/Jaime.jpg'); }
+    .panel5 { background-image:url('Images/Baelish.jpg'); }
+
+    /* Flex Children */
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      flex: 1 0 auto;
+      justify-content: center;
+      align-items: center;
+      display: flex; /* nested flex */
+    }
+
+    .panel > *:nth-child(2) {transform: translateY(200%); }
+    .panel.open-active > *:nth-child(2) {transform: translateY(0); }
+    .panel > *:last-child {transform: translateY(200%); }
+    .panel.open-active > *:last-child {transform: translateY(0); }
+
+    .panel p {
+      font-family: "Times New Roman", Times, serif;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    
+    .panel p:first-child {
+      align-items: flex-start;
+      font-size: 2.6em;
+    }
+
+    .panel.open {
+      flex: 5;
+      font-size: 37px;
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>Ned Stark</p>
+      <p>The man who passes the sentence</p>
+      <p>Should swing the sword</p>
+    </div>
+    <div class="panel panel2">
+      <p>Tyrion Lannister</p>
+      <p>I'm guilty of a far more monstrous crime</p>
+      <p>I'm guilty of being a dwarf</p>
+    </div>
+    <div class="panel panel3">
+      <p>Ramsay Bolton</p>
+      <p>If you think this has a happy ending</p>
+      <p>You haven't been paying attention</p>
+    </div>
+    <div class="panel panel4">
+      <p>Jaime Lannister</p>
+      <p>There are no men like me</p>
+      <p>Only me</p>
+    </div>
+    <div class="panel panel5">
+      
+      <p>Petyr Baelish</p>
+      <p>A story we agree to tell each other over and over</p>
+      <p>Until we forget that it's a lie</p>
+    </div>
+  </div>
+
+  <script src = "javascript.js"></script>
+
+
+
+</body>
+</html>
