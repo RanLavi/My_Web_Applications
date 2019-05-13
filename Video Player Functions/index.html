@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+    <video id="video"> 
+    <source src="Videos/Game Of Thrones 8x03 - The Long Night Full Ending Scene.mp4" type="video/mp4" /><!-- Safari / iOS, IE9 -->
+    <source src="Videos/Game Of Thrones 8x03 - The Long Night Full Ending Scene.webm" type="video/webm" /><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+    <source src="Videos/Game Of Thrones 8x03 - The Long Night Full Ending Scene.ogv" type="video/ogg"  /><!-- Firefox3.6+ / Opera 10.5+ -->
+    </video>
+    <div class="controls">
+        <button id="playPause">Play/Pause</button>
+        <div class="timeContainer">
+            <span class="currentTimeCaption">Current time:</span>
+            <span class="currentTime" id="currentTime">0:00</span>
+        </div>
+    </div>
+    <div class="social">
+        <div class="viewsContainer">
+            <span class="viewsCaption">Views: </span>
+            <span class="views" id="views">0</span>
+        </div>
+        <div class="voteContainer">
+            <button id="thumbsUp">thumbsUp: 0</button>
+            <button id="thumbsDown">thumbsDown: 0</button>
+        </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#config-web-app -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-database.js"></script>
+
+    <script type="text/javascript" src="firebaseHelper.js"></script>
+    <script type="text/javascript" src="controls.js"></script>
+    <script type="text/javascript" src="buttons.js"></script>
+    <script type="text/javascript" src="videoPlayer.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+
+    </body>
+</html>
