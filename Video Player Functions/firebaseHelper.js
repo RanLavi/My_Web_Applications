@@ -13,55 +13,47 @@ const firebaseConfig = {
 /* Created the views and thumbs objects directly on Firebase since there's no need to create additional objects after the first time the program loads
 The values for these objects were initialized to zero */
 
-// When a value is updated on the DB, we send that value to the callback function
-function registerThumbsUpValueChange(callback){
-    this.thumbsUpRef.on("value", function(snap) {callback(snap.val())});
-}
-
-function registerThumbsDownValueChange(callback){
-    this.thumbsDownRef.on("value", function(snap) {callback(snap.val())});
-}
-
-function registerViewsValueChange(callback){
-    this.viewsRef.on("value", function(snap) {callback(snap.val())});
-}
-
-// Update functions which are used to transform the current value on the DB into a new value. If another client writes to the location before the new value is successfully written, the update function will be called again with the new current value, and the write will be retried. This will happen repeatedly
-function addThumbsUp(){
-    this.thumbsUpRef.transaction(function(currentThumbsUpCount) {
-        return currentThumbsUpCount + 1;
-    });
-}
-
-function addThumbsDown(){
-    this.thumbsDownRef.transaction(function(currentThumbsDownCount) {
-        return currentThumbsDownCount + 1;
-    });
-}
-
-function addViews(){
-    this.viewsRef.transaction(function(currentViews){
-        return currentViews + 1;
-    });
-}
-
-function Firebase(){
+class Firebase{
+    constructor(firebaseConfig){
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
     // Database references
     const database = firebase.database();
-
     this.viewsRef = database.ref("viewsCount");
     this.thumbsUpRef = database.ref("thumbsUpCount");
     this.thumbsDownRef = database.ref("thumbsDownCount");
+    }
 
-    //Public Methods
-    this.registerThumbsUpValueChange = registerThumbsUpValueChange;
-    this.registerThumbsDownValueChange = registerThumbsDownValueChange;
-    this.registerViewsValueChange = registerViewsValueChange;
-    
-    this.addThumbsUp = addThumbsUp;
-    this.addThumbsDown = addThumbsDown;
-    this.addViews = addViews;
+    // When a value is updated on the DB, we send that value to the callback function
+    registerThumbsUpValueChange(callback){
+        this.thumbsUpRef.on("value", function(snap) {callback(snap.val())});
+    }
+
+    registerThumbsDownValueChange(callback){
+        this.thumbsDownRef.on("value", function(snap) {callback(snap.val())});
+    }
+
+    registerViewsValueChange(callback){
+        this.viewsRef.on("value", function(snap) {callback(snap.val())});
+    }
+
+    // Update functions which are used to transform the current value on the DB into a new value. If another client writes to the location before the new value is successfully written, the update function will be called again with the new current value, and the write will be retried. This will happen repeatedly
+    addThumbsUp(){
+        this.thumbsUpRef.transaction(function(currentThumbsUpCount) {
+            return currentThumbsUpCount + 1;
+        });
+    }
+
+    addThumbsDown(){
+        this.thumbsDownRef.transaction(function(currentThumbsDownCount) {
+            return currentThumbsDownCount + 1;
+        });
+    }
+
+    addViews(){
+        this.viewsRef.transaction(function(currentViews){
+            return currentViews + 1;
+        });
+    }
 }

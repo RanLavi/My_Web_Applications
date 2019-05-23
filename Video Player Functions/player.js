@@ -1,23 +1,14 @@
-window.onload = init;
+window.addEventListener("load", init);
 
 function init(){
-    const videoFile = document.getElementById("video");
-    const playButton = document.getElementById("playPause");
-    const thumbsUpButton = document.getElementById("thumbsUp");
-    const thumbsDownButton = document.getElementById("thumbsDown");
-    const currentTimeDomElement = document.getElementById("currentTime");
-    const viewsDomElement = document.getElementById("views");
-    
-    const myPlayButton = new PlayButton(playButton);
-    const myThumbsUpButton = new ThumbsButton(thumbsUpButton, "thumbsUp");
-    const myThumbsDownButton = new ThumbsButton(thumbsDownButton, "thumbsDown"); 
-    const currentTimeControl = new CurrentTime(currentTimeDomElement);
-    const myVideo = new Video(videoFile, currentTimeControl);
-    const myViews = new Views(viewsDomElement);
+    const myPlayButton = new PlayButton(document.getElementById("playPause"));
+    const myThumbsUpButton = new ThumbsButton(document.getElementById("thumbsUp"), "thumbsUp");
+    const myThumbsDownButton = new ThumbsButton(document.getElementById("thumbsDown"), "thumbsDown"); 
+    const currentTimeControl = new CurrentTime(document.getElementById("currentTime"));
+    const myVideo = new Video(document.getElementById("video"), currentTimeControl);
+    const myViews = new Views(document.getElementById("views"));
+    const myDataBase = new Firebase(firebaseConfig);
     myPlayButton.registerClickEvent(myVideo.playOrPause.bind(myVideo)); // Sending the PlayButton class a reference to playOrPause function, and binding it to myVideo object
-    // can also be done by using lambda: myPlayButton.registerClickEvent(() => { myVideo.playOrPause(); });
-    // or myPlayButton.registerClickEvent(function() { myVideo.playOrPause(); })
-    const myDataBase = new Firebase();
     myThumbsUpButton.registerClickEvent(myDataBase.addThumbsUp.bind(myDataBase)); // Sending the buttons class a reference to addThumbsUp function, and binding it to myDataBase object, to this instance
     myThumbsDownButton.registerClickEvent(myDataBase.addThumbsDown.bind(myDataBase)); // Sending the buttons class a reference to addThumbsDown function, and binding it to myDataBase object, to this instance
     myDataBase.registerThumbsUpValueChange(myThumbsUpButton.updateButtonText.bind(myThumbsUpButton)); // Sending the Firebase class a reference to updateButtonText function, and binding it to myThumbsUpButton object, to this instance
