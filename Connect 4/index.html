@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <link rel="stylesheet" href="style.css" type="text/css">
+		<title>Connect Four</title>
+	</head>
+	<body>
+        <h1>Connect Four</h1>
+        <button id="reset_game">Reset Game</button>
+        <span id="game_info"></span> <!-- Showing who's turn it is or who won or if it's a draw -->
+        <table id="game_table">
+            <thead>
+                <tr>
+                <!-- Table heads for the drop buttons. Didn't use eventlistener to make it shorter -->
+                    <td><button onclick="drop(0);">Drop</button></td>
+                    <td><button onclick="drop(1);">Drop</button></td>
+                    <td><button onclick="drop(2);">Drop</button></td>
+                    <td><button onclick="drop(3);">Drop</button></td>
+                    <td><button onclick="drop(4);">Drop</button></td>
+                    <td><button onclick="drop(5);">Drop</button></td>
+                    <td><button onclick="drop(6);">Drop</button></td>
+                </tr>
+            </thead>
+            <!-- builds the HTML table -->
+            <script type="text/javascript" src="build_html_table.js"></script>	
+        </table>
+        <script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
