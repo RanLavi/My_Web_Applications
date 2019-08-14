@@ -31,7 +31,7 @@ function drop(col) {
         /* Set empty cell to the active player's number */
         gameboard[row][col] = active_player;
         document.getElementById("cell_"+row+"_"+col).firstChild.classList.toggle("player"+active_player); // Change piece color from player0 to active_player
-        if(checkForWin()) // See if active player has won, if so, stop function
+        if(check_for_win()) // See if active player has won, if so, stop function
           return true; 
         if(turn==42){ // See if the board is full, if so, update game_info and game_active and stop function
           game_info.innerHTML = "Game over, it's a draw";
@@ -47,13 +47,13 @@ function drop(col) {
   }
 }	
 
-function checkForWin() {
+function check_for_win() {
   /* Checking 4 in a row horizontally. 4 in a row means, if we start from the left size, column starts at 0 to 3 */
   for (let col = 0; col <=3; col++) {
     for (let row = 0; row <=5; row++) {
       if (gameboard[row][col] == active_player) { // Check current piece, if it belongs to the active player, check 4 in a row
         if ((gameboard[row][col+1] == active_player) && (gameboard[row][col+2] == active_player) && (gameboard[row][col+3] == active_player)) {
-          endGame(active_player);
+          end_game(active_player);
           return true; // Game over, can stop checking
         }
       }
@@ -65,7 +65,7 @@ function checkForWin() {
     for (let row = 0; row <=2; row++) {
       if (gameboard[row][col] == active_player) { 
         if ((gameboard[row+1][col] == active_player) && (gameboard[row+2][col] == active_player) && (gameboard[row+3][col] == active_player)) {
-          endGame(active_player); 
+          end_game(active_player); 
           return true; // Game over, can stop checking
         }
       }
@@ -78,7 +78,7 @@ function checkForWin() {
     for (let row = 0; row <=2; row++) {
       if (gameboard[row][col] == active_player) { 
         if ((gameboard[row+1][col+1] == active_player) && (gameboard[row+2][col+2] == active_player) && (gameboard[row+3][col+3] == active_player)) {
-          endGame(active_player);
+          end_game(active_player);
           return true; // Game over, can stop checking
         }
       }
@@ -91,7 +91,7 @@ function checkForWin() {
     for (let row = 3; row <=5; row++) {
       if (gameboard[row][col] == active_player) { // Check current piece, if it belongs to the active player, check 4 in a row
         if ((gameboard[row-1][col+1] == active_player) && (gameboard[row-2][col+2] == active_player) && (gameboard[row-3][col+3] == active_player)) {
-          endGame(active_player);
+          end_game(active_player);
           return true; // Game over, can stop checking
         }
       }
@@ -99,7 +99,7 @@ function checkForWin() {
   }
 }
 
-function endGame(active_player) {
+function end_game(active_player) {
   game_active = false; // Setting to false means the drop function does nothing from now on, until we reset
   /* Show who won */
   if(active_player==1){
